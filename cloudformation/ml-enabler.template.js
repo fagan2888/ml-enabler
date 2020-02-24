@@ -1,4 +1,5 @@
 const cf = require('@mapbox/cloudfriend');
+const batch = require('./batch');
 
 const Parameters = {
     GitSha: {
@@ -65,6 +66,24 @@ const Resources = {
             VpcId: cf.ref('MLEnablerVPC'),
             CidrBlock: '172.31.2.0/24',
             MapPublicIpOnLaunch: true
+        }
+    },
+    MLEnablerPrivateSubA: {
+        'Type' : 'AWS::EC2::Subnet',
+        'Properties' : {
+            AvailabilityZone: cf.findInMap('AWSRegion2AZ', cf.region, '1'),
+            VpcId: cf.ref('MLEnablerVPC'),
+            CidrBlock: '172.31.3.0/24',
+            MapPublicIpOnLaunch: false
+        }
+    },
+    MLEnablerPrivateSubB: {
+        'Type' : 'AWS::EC2::Subnet',
+        'Properties' : {
+            AvailabilityZone: cf.findInMap('AWSRegion2AZ', cf.region, '2'),
+            VpcId: cf.ref('MLEnablerVPC'),
+            CidrBlock: '172.31.4.0/24',
+            MapPublicIpOnLaunch: false
         }
     },
     MLEnablerInternetGateway: {
@@ -470,5 +489,4 @@ const ml = {
     Outputs
 };
 
-module.exports = ml;
-//module.exports = cf.merge(ml, tfserving);
+module.exports = cf.merge(ml, batch);

@@ -98,13 +98,13 @@ const Resources = {
             },
             "Parameters": { },
             "ContainerProperties": {
-                "Command": [ "./task.js", ],
+                "Command": [ "./scripts/model.py", ],
                 "Memory": 4000,
                 "Privileged": true,
                 "JobRoleArn": cf.getAtt('BatchJobRole', 'Arn'),
                 "ReadonlyRootFilesystem": false,
                 "Vcpus": 2,
-                "Image": cf.join([cf.ref('AWS::AccountId'), '.dkr.ecr.', cf.ref('AWS::Region'), '.amazonaws.com/batch:', cf.ref('GitSha')])
+                Image: cf.join([cf.accountId, '.dkr.ecr.', cf.region, '.amazonaws.com/ml-enabler:', cf.ref('GitSha')])
             }
         }
     },

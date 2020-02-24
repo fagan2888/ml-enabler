@@ -1,8 +1,9 @@
-# ml-enabler
+<h1 align=center>ML Enabler</h1>
 
 A service that integrates ML models to applications like Tasking Manager.
 
 ## Background
+
 Machine Learning has proven to be very successful to make mapping fast with high quality. With a diverse set of models and tools, it is hard to integrate them to existing tools like Tasking Manager and iD. HOT is developing ml-enabler to enable AI-assist to existing mapping tools.
 
 ml-enabler is two projects:
@@ -27,6 +28,11 @@ The CloudFormation template is designed to be AWS Account agnostic and will crea
 
 The cloudformation template is designed to be deployed with [cfn-config](https://github.com/mapbox/cfn-config), or a cfn-config compatible client.
 [OpenAddresses/Deploy](https://github.com/openaddresses/deploy) is a compatible client with a bunch of extra nice features.
+
+### Manual Steps
+
+- Create a new ECR called `ml-enabler`
+- Create a new ECR called `ml-enabler-store`
 
 ### Paramaters
 

@@ -26,7 +26,7 @@ RUN \
   pip install gunicorn; \
   pip install -r requirements.txt
 
-RUN cp ./cloudformation/nginx.conf /etc/nginx/sites-enabled/default
+RUN cp ./cloudformation/assets/nginx.conf /etc/nginx/sites-enabled/default
 
 CMD service nginx restart \
     && echo "CREATE DATABASE ${POSTGRES_DB}" | psql postgres://${POSTGRES_USER}:${POSTGRES_PASSWORD}@${POSTGRES_ENDPOINT}:${POSTGRES_PORT} || true \

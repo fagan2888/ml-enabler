@@ -1,4 +1,11 @@
 const cf = require('@mapbox/cloudfriend');
+const tm = require('./tm');
+const args = require('minimist')(process.argv, {
+    boolean: ['tm'],
+    alias: {
+        'tm': 'tasking-manager'
+    }
+});
 
 const Parameters = {
     GitSha: {
@@ -462,7 +469,7 @@ const Outputs = {
     }
 };
 
-const ml = {
+let ml = {
     Parameters,
     Resources,
     Mappings,
@@ -470,5 +477,8 @@ const ml = {
     Outputs
 };
 
+if (args.tm) {
+    ml = cf.merge(ml, tm);
+}
+
 module.exports = ml;
-//module.exports = cf.merge(ml, tfserving);
